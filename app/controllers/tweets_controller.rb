@@ -12,7 +12,7 @@ class TweetsController < ApplicationController
 
   def create
     Tweet.create(tweet_params)
-    redirect_to '/'
+    redirect_to "/tweets/#{comment.tweet.id}" 
   end
 
   def destroy
@@ -31,6 +31,8 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @tweet.comments.includes(:user)
   end
 
 
